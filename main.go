@@ -54,7 +54,7 @@ func (rl *RateLimiter) Middleware(h func(w http.ResponseWriter, r *http.Request)
 	return func(w http.ResponseWriter, r *http.Request) {
 		// если не превышен RPC - разрешаем обработку запроса
 		if rl.checkLimit() {
-			handler(w, r)
+			h(w, r)
 			return
 		}
 		// иначе возвращаем ошибку 429
